@@ -1,9 +1,9 @@
 name: CI/CD Pipeline with Selenium Tests
 on:
-push:
- branches: [ main, develop ]
-pull_request:
- branches: [ main ]
+ push:
+  branches: [ main, develop ]
+ pull_request:
+  branches: [ main ]
 
 jobs:
  test:
@@ -36,15 +36,15 @@ jobs:
       name: test-results
       path: test-report.html
 
-deploy:
- needs: test
- runs-on: ubuntu-latest
- if: github.ref == 'refs/heads/main' && github.event_name == 'push'
- steps:
-  - name: Checkout code
-    uses: actions/checkout@v4
-  - name: Deploy to GitHub Pages
-    uses: peaceiris/actions-gh-pages@v3
-    with:
-     github_token: ${{ secrets.GITHUB_TOKEN }}
-     publish_dir: ./src
+  deploy:
+  needs: test
+  runs-on: ubuntu-latest
+  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+      github_token: ${{ secrets.GITHUB_TOKEN }}
+      publish_dir: ./src
