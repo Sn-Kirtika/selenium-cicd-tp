@@ -1,12 +1,12 @@
 name: CI/CD Pipeline with Selenium Tests
-'on': null
-push:
-  branches:
-    - main
-    - develop
-pull_request:
-  branches:
-    - main
+'on':
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
 jobs:
   test:
     runs-on: ubuntu-latest
